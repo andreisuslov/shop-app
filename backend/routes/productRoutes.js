@@ -2,7 +2,7 @@ import express from 'express';
 
 const router = express.Router();
 
-import asyncHandler from '../middleware/asyncHandler.js';
+import asyncHandlerHelper from '../middleware/asyncHandlerHelper.js';
 
 import products from '../data/products.js';
 
@@ -10,7 +10,7 @@ import Product from '../models/productModel.js';
 
 router.get(
 	'/',
-	asyncHandler(async (req, res) => {
+	asyncHandlerHelper(async (req, res) => {
 		const products = await Product.find({});
 		res.json(products);
 	}),
@@ -18,7 +18,7 @@ router.get(
 
 router.get(
 	'/:id',
-	asyncHandler(async (req, res) => {
+	asyncHandlerHelper(async (req, res) => {
 		const product = await Product.findById(req.params.id);
 
 		if (product) {
