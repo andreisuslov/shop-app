@@ -2,7 +2,7 @@ import express from 'express';
 
 const router = express.Router();
 
-import asyncHandlerHelper from '../middleware/asyncHandlerHelper.js';
+import asyncHandlerHelper from '../middleware/asyncHandler.js';
 
 import products from '../data/products.js';
 
