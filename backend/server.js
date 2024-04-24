@@ -13,39 +13,39 @@ const app = express();
 const port = process.env.PORT || 5500;
 
 app.get('/', (req, res) => {
-  res.send('API is running...');
+	res.send('API is running...');
 });
 
 app.use('/api/products', productRoutes);
 
 app.get('/api/products', (req, res) => {
-  res.json(products);
+	res.json(products);
 });
 
 app.get('/api/products/:id', (req, res) => {
-  const product = products.find((p) => p._id === req.params.id);
-  res.json(product);
+	const product = products.find((p) => p._id === req.params.id);
+	res.json(product);
 });
 
 const findAvailablePort = (basePort, callback) => {
-  const port = basePort;
-  const server = net.createServer();
+	const port = basePort;
+	const server = net.createServer();
 
-  server.listen(port, () => {
-    server.once('close', () => {
-      callback(port);
-    });
-    server.close();
-  });
+	server.listen(port, () => {
+		server.once('close', () => {
+			callback(port);
+		});
+		server.close();
+	});
 
-  server.on('error', () => {
-    findAvailablePort(port + 1, callback);
-  });
+	server.on('error', () => {
+		findAvailablePort(port + 1, callback);
+	});
 };
 
 // Start with the base port, which is 5500
 findAvailablePort(port, (availablePort) => {
-  app.listen(availablePort, () => {
-    console.log(`Server running on port ${availablePort}`.cyan.underline);
-  });
+	app.listen(availablePort, () => {
+		console.log(`Server running on port ${availablePort}`.cyan.underline);
+	});
 });
