@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import Product from '../components/Product';
+import axios from 'axios';
 
 const HomeScreen = () => {
-	/* We use useState() to create a state variable to store the products. */
 	const [products, setProducts] = useState([]);
 
 	/* In React, we use useEffect() to run code when a component mounts or unmounts. 
@@ -12,12 +12,13 @@ const HomeScreen = () => {
 	*/
 	useEffect(() => {
 		const fetchProducts = async () => {
-			const response = await fetch('/api/products');
-			const data = await response.json();
+			const { data } = await axios.get('/api/products');
 			setProducts(data);
 		};
+
 		fetchProducts();
 	}, []);
+
 	return (
 		<>
 			<h1>Latest Products</h1>
