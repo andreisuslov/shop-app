@@ -11,6 +11,7 @@ import './assets/bootstrap.custom.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import HomeScreen from './screens/HomeScreen';
+import ProductScreen from './screens/ProductScreen';
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
@@ -20,8 +21,11 @@ const router = createBrowserRouter(
 			index={true} means that this is the default route
 			path="/" means that this route is the root route
 			element={<HomeScreen />} means that this route will render the HomeScreen component 
+
+			:id is a dynamic parameter, meaning that it can be any string
 			*/}
 			<Route index={true} path="/" element={<HomeScreen />} />
+			<Route path="/product/:id" element={<ProductScreen />} />
 		</Route>
 	)
 );
