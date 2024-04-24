@@ -6,7 +6,7 @@ import net from 'net';
 
 const app = express();
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5500;
 
 app.get('/', (req, res) => {
   res.send('API is running...');
