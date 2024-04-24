@@ -1,51 +1,29 @@
 import express from 'express';
 import dotenv from 'dotenv';
+
 dotenv.config();
+
 import connectDB from './config/db.js';
-import colors from 'colors';
 import productRoutes from './routes/productRoutes.js';
-import net from 'net';
+import { notFound, errorHandler } from './middleware/errorMiddleware.js';
+
+const port = process.env.PORT || 5500;
 
 connectDB();
 
 const app = express();
 
-const port = process.env.PORT || 5500;
+app.use('/api/products', productRoutes);
 
 app.get('/', (req, res) => {
 	res.send('API is running...');
 });
 
-app.use('/api/products', productRoutes);
+app.use(notFound);
+app.use(errorHandler);
 
-app.get('/api/products', (req, res) => {
-	res.json(products);
-});
-
-app.get('/api/products/:id', (req, res) => {
-	const product = products.find((p) => p._id === req.params.id);
-	res.json(product);
-});
-
-const findAvailablePort = (basePort, callback) => {
-	const port = basePort;
-	const server = net.createServer();
-
-	server.listen(port, () => {
-		server.once('close', () => {
-			callback(port);
-		});
-		server.close();
-	});
-
-	server.on('error', () => {
-		findAvailablePort(port + 1, callback);
-	});
-};
-
-// Start with the base port, which is 5500
-findAvailablePort(port, (availablePort) => {
-	app.listen(availablePort, () => {
-		console.log(`Server running on port ${availablePort}`.cyan.underline);
-	});
-});
+app.listen(port, () =>
+	console.log(
+		`Server running in ${process.env.NODE_ENV} mode on port ${port}`,
+	),
+);
