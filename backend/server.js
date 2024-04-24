@@ -40,7 +40,7 @@ const findAvailablePort = (basePort, callback) => {
   });
 };
 
-// Start with your base port, which is 5000
+// Start with the base port, which is 5500
 findAvailablePort(port, (availablePort) => {
   app.listen(availablePort, () => {
     console.log(`Server running on port ${availablePort}`);
