@@ -17,6 +17,8 @@ export const productSlice = apiSlice.injectEndpoints({
 		}),
 		getProductDetails: builder.query({
 			query: (productId) => ({
+				// Add a leading forward slash to ensure the URL is constructed correctly relative to the base URL
+				// and treated as an absolute path from the base URL.
 				url: `/${PRODUCTS_URL}/${productId}`,
 			}),
 			keepUnusedDataFor: 5, // Keep the data for 5 seconds before it expires
