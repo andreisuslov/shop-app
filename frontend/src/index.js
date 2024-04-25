@@ -39,7 +39,6 @@ root.render(
 	// StrictMode is a React feature that will detect any issues in your application and warn you about them
 	<React.StrictMode>
 		<Provider store={store}>
-			\
 			<RouterProvider router={router} />
 		</Provider>
 	</React.StrictMode>,
