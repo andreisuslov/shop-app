@@ -8,7 +8,7 @@ import { BASE_URL } from '../constants';
 const baseQuery = fetchBaseQuery({ baseUrl: BASE_URL });
 
 /*
- * API Slice is a container for all API endpoints.
+ * API Slice is a container/parent for all the rest of our API endpoints.
  * Currently, it is empty because we don't have any endpoints.
  * We will add endpoints in the future.
  * The 'builder' object is used to create endpoints.
@@ -22,6 +22,7 @@ export const apiSlice = createApi({
 	tagTypes: ['Product', 'Order', 'User'],
 
 	// Define the endpoints for the API slice using the 'builder' object
-	// Currently, there are no endpoints defined (an empty object is returned)
+	// There are no endpoints defined (an empty object is returned),
+	// but other slices can use the same builder object to create endpoints
 	endpoints: (builder) => ({}),
 });
