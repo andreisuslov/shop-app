@@ -4,8 +4,10 @@ import {
 	createBrowserRouter,
 	createRoutesFromElements,
 	Route,
-	RouterProvider
-} from "react-router-dom";
+	RouterProvider,
+} from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './store';
 import './assets/index.css';
 import './assets/bootstrap.custom.css';
 import App from './App';
@@ -16,7 +18,9 @@ import ProductScreen from './screens/ProductScreen';
 const router = createBrowserRouter(
 	createRoutesFromElements(
 		<Route path="/" element={<App />}>
-			{/* 
+			{' '}
+			{/*  
+			App is at the root
 			HomeScreen is the default route, so we can omit the index prop
 			index={true} means that this is the default route
 			path="/" means that this route is the root route
@@ -26,14 +30,17 @@ const router = createBrowserRouter(
 			*/}
 			<Route index={true} path="/" element={<HomeScreen />} />
 			<Route path="/product/:id" element={<ProductScreen />} />
-		</Route>
-	)
+		</Route>,
+	),
 );
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+	// StrictMode is a React feature that will detect any issues in your application and warn you about them
 	<React.StrictMode>
-		<RouterProvider router={router} />
+		<Provider store={store}>\
+			<RouterProvider router={router} />
+		</Provider>
 	</React.StrictMode>,
 );
 
