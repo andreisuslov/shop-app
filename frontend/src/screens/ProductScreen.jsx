@@ -8,7 +8,7 @@ const ProductScreen = () => {
 	const { id: productId } = useParams();
 
 	const {
-		data: product,
+		data: product, // renaming data into product
 		isLoading,
 		error,
 	} = useGetProductDetailsQuery(productId);
@@ -19,7 +19,7 @@ const ProductScreen = () => {
 				Go Back
 			</Link>
 			{isLoading ? (
-				<div>Loading...</div>
+				<h2>Loading...</h2>
 			) : error ? (
 				<div>{error?.data.message || error.error}</div>
 			) : (
